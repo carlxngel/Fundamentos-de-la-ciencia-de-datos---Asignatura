@@ -106,7 +106,10 @@ cat("PREGUNTA 4: ANÁLISIS MULTIVARIABLE\n")
 cat("========================================\n\n")
 
 # Gráfico con facetas por género y color por almuerzo
-plot4 <- ggplot(students, aes(x = reading_score, y = writing_score, color = lunch)) +
+plot4 <- ggplot(
+  students,
+  aes(x = reading_score, y = writing_score, color = lunch)
+) +
   geom_point(alpha = 0.6, size = 2) +
   facet_wrap(~ gender) +
   labs(
@@ -120,9 +123,12 @@ plot4 <- ggplot(students, aes(x = reading_score, y = writing_score, color = lunc
     plot.title = element_text(face = "bold", size = 13),
     strip.text = element_text(face = "bold", size = 11)
   ) +
-  scale_color_manual(values = c("standard" = "#2E7D32", "free/reduced" = "#C62828"))
+  scale_color_manual(
+    values = c("standard" = "#2E7D32", "free/reduced" = "#C62828")
+  )
 
 print(plot4)
+ggsave("grafico_pregunta4.png", plot4, width = 10, height = 6, dpi = 300)
 
 # Calcular estadísticas por grupo
 estadisticas_grupos <- students %>%
@@ -176,6 +182,7 @@ plot5 <- ggplot(students, aes(x = reading_score, y = writing_score)) +
   )
 
 print(plot5)
+ggsave("grafico_pregunta5.png", plot5, width = 10, height = 6, dpi = 300)
 
 # Calcular correlación y modelo de regresión
 correlacion <- cor(students$reading_score, students$writing_score)
@@ -229,6 +236,7 @@ plot6 <- ggplot(students, aes(x = reading_score, y = writing_score, color = gend
   )
 
 print(plot6)
+ggsave("grafico_pregunta6.png", plot6, width = 10, height = 6, dpi = 300)
 
 # Análisis por género
 analisis_genero <- students %>%
